@@ -10,6 +10,7 @@ function bootstrap() {
   const authMiddleware = new AuthMiddleware();
 
   const app = express();
+  app.get("/health", (_, res) => res.sendStatus(200));
   app.use(authMiddleware.execute);
   app.get("/rules/query", ruleController.query.bind(ruleController));
   return app;
